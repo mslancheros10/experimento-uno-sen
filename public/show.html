@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $.ajax({
+              url: "http://localhost:3000/stockByCategory",
+              dataType: "json",
+              success: function(data) { 
+                var trHTML = '';
+                $.each(data.msg[0].data, function(idx, item){
+                    
+                    trHTML += '<tr><td>' + item.category + '</td><td>' + item.stock + '</td></tr>';
+
+                })
+                $('#products').append(trHTML);
+                console.log(data); 
+            },
+              error: function() { console.log('PAILA'); },
+              })
+        </script>
+        <title>ABC Almacenes</title>
+    </head>
+    <body>
+        <h1>ABC ALMACENES</h1>
+        <p>
+            Inventario de productos.
+        </p>
+        <table id="products" border='1'>
+            <tr>
+                <th>Categoría</th>
+                 <th>Stock</th>
+            </tr>
+        </table>
+    </body>
+</html>
